@@ -64,8 +64,9 @@ public class AccountController : ControllerBase {
 
         customer.Role = role;
         customer = await _customerService.Create (customer);
+        var actionName = nameof (CustomerController.GetCustomer);
 
-        return CreatedAtAction ("GetCustomer", "Customer", new { id = customer.Id });
+        return CreatedAtAction (actionName, "Customer", new { id = customer.Id }, new { id = customer.Id });
     }
 
 }

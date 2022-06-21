@@ -39,7 +39,7 @@ public class CustomerController : ControllerBase {
     }
     
     [Authorize]
-    [HttpGet ("{id}",Name = "GetCustomer")]
+    [HttpGet ("{id}")]
     public async Task<IActionResult> GetCustomer (string id) {
         var customer = await _customerService.GetAsync (id);
 
