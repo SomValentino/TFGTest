@@ -1,4 +1,5 @@
 using TFG.Application;
+using TFG.Infrastructure;
 
 var builder = WebApplication.CreateBuilder (args);
 
@@ -9,7 +10,8 @@ builder.Services.AddControllers ();
 builder.Services.AddEndpointsApiExplorer ();
 builder.Services.AddSwaggerGen ();
 builder.Services.AddAutoMapper (typeof (Program));
-builder.Services.AddApplicationServices();
+builder.Services.AddApplicationServices()
+                .AddApplicationInfrastructureServices(builder.Configuration);
 
 var app = builder.Build ();
 

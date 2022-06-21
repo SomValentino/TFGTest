@@ -32,14 +32,14 @@ public class CustomerService : ICustomerService {
     public async Task<IEnumerable<Customer>> SearchAsync (string search) 
     {
         var queryExpr = new BsonRegularExpression (new Regex (search, RegexOptions.IgnoreCase));
-        var builder = Builders<BsonDocument>.Filter;
+        var builder = Builders<Customer>.Filter;
 
         var firstNamefilter = builder.Regex ("FirstName", queryExpr);
         var lastNamefilter = builder.Regex ("LastName", queryExpr);
         var emailFilter = builder.Regex ("Email", queryExpr);
         var phoneNumberFilter = builder.Regex ("PhoneNumber", queryExpr);
 
-        var combinedFilter = Builders<BsonDocument>.Filter.Or(firstNamefilter, lastNamefilter,
+        var combinedFilter = Builders<Customer>.Filter.Or(firstNamefilter, lastNamefilter,
                                  emailFilter, phoneNumberFilter);
 
         return await _customerRepository.GetAsync(combinedFilter);

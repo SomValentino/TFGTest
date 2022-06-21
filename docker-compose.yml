@@ -1,0 +1,15 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  tfgdb:
+    image: mongo
+  tfgapi:
+    image: tfgapi
+    build:
+      context: .
+      dockerfile: Src/TFG.API/Dockerfile
+
+volumes:
+  tfg_mongo_data:

@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  tfgdb:
+    container_name: tfgdb
+    restart: always
+    ports: 
+      - 27017:27017
+    volumes:
+      - tfg_mongo_data:/data/db
+  
+  tfgapi:
+    container_name: tfg.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DatabaseSettings__ConnectionString=mongodb://tfgdb
+      - DatabaseSettings__DatabaseName=CustomerDb
+      - DatabaseSettings__CollectionName=Customers
+    depends_on:
+      - tfgdb
+    ports:
+      - 5001:80

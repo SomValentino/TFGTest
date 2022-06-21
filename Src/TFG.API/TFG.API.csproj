@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TFG.Application\TFG.Application.csproj" />
     <ProjectReference Include="..\TFG.Domain\TFG.Domain.csproj" />
+    <ProjectReference Include="..\TFG.Infrastructure\TFG.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

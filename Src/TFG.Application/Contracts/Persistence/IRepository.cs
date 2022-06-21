@@ -11,5 +11,5 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
     Task<bool> Delete (TEntity entity);
     Task<IReadOnlyList<TEntity>> GetAsync ();
     Task<TEntity> GetAsync (string Id);
-    Task<IReadOnlyList<TEntity>> GetAsync (FilterDefinition<BsonDocument> filter);
+    Task<IReadOnlyList<TEntity>> GetAsync (FilterDefinition<TEntity> filter);
 }
