@@ -9,6 +9,8 @@ public static class ApplicationServices
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddScoped<ICustomerService,CustomerService>();
+        services.AddScoped<ILoginService,LoginService>();
+        services.AddScoped<IRoleService,RoleService>();
         return services;
     }
 }

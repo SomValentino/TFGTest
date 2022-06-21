@@ -1,9 +1,11 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TFG.API.Dto.Request;
+using TFG.API.Dto.Response;
+using TFG.Application.Contracts.Service;
 using TFG.Domain.Entities;
 
-namespace TFG.Application.Contracts.Service;
+namespace TFG.API.Controllers;
 
 [ApiController]
 [Route ("api/[controller]")]
@@ -30,26 +32,23 @@ public class CustomerController : ControllerBase {
             customers = await _customerService.SearchAsync (search);
         }
 
-        return Ok (customers);
+        var response = _mapper.Map<IEnumerable<CustomerResponseDto>> (customers);
+
+        return Ok (response);
     }
 
-    [HttpGet ("{id}")]
+    [HttpGet ("{id}",Name = "GetCustomer")]
     public async Task<IActionResult> GetCustomer (string id) {
         var customer = await _customerService.GetAsync (id);
 
         if (customer == null) return NotFound ();
 
-        return Ok (customer);
+        var response = _mapper.Map<CustomerResponseDto> (customer);
+
+        return Ok (response);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> CreateCustomer ([FromBody] CustomerDto customerDto) {
-        var customer = _mapper.Map<Customer> (customerDto);
-
-        customer = await _customerService.Create (customer);
-
-        return Ok (customer);
-    }
+    
 
     [HttpPut ("{id}")]
     public async Task<IActionResult> UpdateCustomer (string id, [FromBody] CustomerDto customerDto) {
@@ -65,13 +64,12 @@ public class CustomerController : ControllerBase {
     }
 
     [HttpDelete ("{id}")]
-    public async Task<IActionResult> DeleteCustomer (string id) 
-    {
+    public async Task<IActionResult> DeleteCustomer (string id) {
         var customer = await _customerService.GetAsync (id);
 
         if (customer == null) return NotFound ();
 
-        await _customerService.Delete(customer);
+        await _customerService.Delete (customer);
 
         return NoContent ();
     }

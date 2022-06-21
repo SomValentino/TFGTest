@@ -13,10 +13,17 @@ public static class ApplicationInfrastructureServices {
         services.AddScoped<CustomerDataContext> (options => {
 
             return new CustomerDataContext (configuration["DatabaseSettings:ConnectionString"],
-                configuration["DatabaseSettings:DatabaseName"], configuration["DatabaseSettings:CollectionName"]);
+                configuration["DatabaseSettings:DatabaseName"], configuration["DatabaseSettings:CustomerCollectionName"]);
+        });
+
+        services.AddScoped<RoleDataContext> (options => {
+
+            return new RoleDataContext (configuration["DatabaseSettings:ConnectionString"],
+                configuration["DatabaseSettings:DatabaseName"], configuration["DatabaseSettings:RoleCollectionName"]);
         });
 
         services.AddScoped<ICustomerRepository, CustomerRepository> ();
+        services.AddScoped<IRoleRepository,RoleRepository> ();
 
         return services;
     }
