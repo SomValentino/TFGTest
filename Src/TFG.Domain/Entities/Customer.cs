@@ -12,5 +12,5 @@ public class Customer : IEntity
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
     public DateTime CreatedAt { get; set; }
-    public DateTime LastModifiedAt { get; set; }
+    public DateTime? LastModifiedAt { get; set; }
 }
