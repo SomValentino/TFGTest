@@ -34,7 +34,7 @@ public class CustomerService : ICustomerService {
 
     public async Task<Customer> GetCustomerByEmailAsync (string email) 
     {
-        var filter = Builders<Customer>.Filter.Eq (x => x.Email.ToLower(), email.ToLower());
+        var filter = Builders<Customer>.Filter.Eq (x => x.Email, email);
 
         return (await _customerRepository.GetAsync (filter)).FirstOrDefault ();
     }

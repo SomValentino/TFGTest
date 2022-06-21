@@ -7,6 +7,8 @@ using TFG.Domain.Entities;
 
 namespace TFG.API.Controllers;
 
+[ApiController]
+[Route ("api/[controller]")]
 public class AccountController : ControllerBase {
     private readonly ICustomerService _customerService;
     private readonly ILoginService _loginService;
@@ -56,8 +58,8 @@ public class AccountController : ControllerBase {
 
         var role = await _roleService.GetRoleByName (customerDto.RoleName);
 
-        if(role == null){
-            role = await _roleService.GetRoleByName("User"); // set to default user role
+        if (role == null) {
+            role = await _roleService.GetRoleByName ("User"); // set to default user role
         }
 
         customer.Role = role;

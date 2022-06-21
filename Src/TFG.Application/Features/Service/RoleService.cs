@@ -16,7 +16,7 @@ public class RoleService : IRoleService {
     }
 
     public async Task<Role> GetRoleByName (string rolename) {
-        var filter = Builders<Role>.Filter.Eq (x => x.Name.ToLower (), rolename.ToLower ());
+        var filter = Builders<Role>.Filter.Eq (x => x.Name, rolename);
         var role = (await _roleRepository.GetAsync (filter)).FirstOrDefault ();
 
         return role;

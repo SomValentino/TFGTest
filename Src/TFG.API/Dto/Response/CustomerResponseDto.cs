@@ -1,3 +1,5 @@
+using TFG.Domain.Entities;
+
 namespace TFG.API.Dto.Response;
 
 public class CustomerResponseDto {
@@ -7,6 +9,7 @@ public class CustomerResponseDto {
 
     public string LastName { get; set; }
     public string UserName { get; set; }
+    public Role Role { get; set; }
     public string Email { get; set; }
     public string PhoneNumber { get; set; }
     public DateTime CreatedAt { get; set; }
