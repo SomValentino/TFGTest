@@ -1,6 +1,6 @@
 using TFG.Application.Contracts.Service;
 
-namespace TFG.API.Middleware;
+namespace TFG.API.Migrations;
 
 public class RoleMigration
 {
@@ -8,8 +8,19 @@ public class RoleMigration
 
     public RoleMigration(IRoleService roleService) => _roleService = roleService;
 
-    public Task CreateRoles()
+    public async Task CreateRoles()
     {
-        
+        var roles = new [] {"Administrator","User"};
+
+        foreach (var role in roles)
+        {
+            var roleExist = await _roleService.GetRoleByName(role);
+
+            if(roleExist == null) await _roleService.CreateRole(new Domain.Entities.Role{
+                Name = role,
+                CreatedAt = DateTime.UtcNow
+            });
+
+        }
     }
 }

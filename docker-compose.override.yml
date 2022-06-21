@@ -15,7 +15,11 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - DatabaseSettings__ConnectionString=mongodb://tfgdb
       - DatabaseSettings__DatabaseName=CustomerDb
-      - DatabaseSettings__CollectionName=Customers
+      - DatabaseSettings__CustomerCollectionName=Customers
+      - DatabaseSettings__RoleCollectionName=Roles
+      - jwtSecret=my_secret_key_12345,
+      - jwtExpiry=3600,
+      - baseUrl=http://localhost:5001,
     depends_on:
       - tfgdb
     ports:

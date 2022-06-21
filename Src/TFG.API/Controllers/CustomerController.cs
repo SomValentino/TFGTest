@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TFG.API.Dto.Request;
 using TFG.API.Dto.Response;
@@ -36,7 +37,8 @@ public class CustomerController : ControllerBase {
 
         return Ok (response);
     }
-
+    
+    [Authorize]
     [HttpGet ("{id}",Name = "GetCustomer")]
     public async Task<IActionResult> GetCustomer (string id) {
         var customer = await _customerService.GetAsync (id);
@@ -49,7 +51,7 @@ public class CustomerController : ControllerBase {
     }
 
     
-
+    [Authorize]
     [HttpPut ("{id}")]
     public async Task<IActionResult> UpdateCustomer (string id, [FromBody] CustomerDto customerDto) {
         var customer = await _customerService.GetAsync (id);
@@ -62,7 +64,8 @@ public class CustomerController : ControllerBase {
 
         return NoContent ();
     }
-
+    
+    [Authorize(Roles = "Administrator")]
     [HttpDelete ("{id}")]
     public async Task<IActionResult> DeleteCustomer (string id) {
         var customer = await _customerService.GetAsync (id);
