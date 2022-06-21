@@ -21,7 +21,7 @@ public class CustomerController : ControllerBase {
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetCustomers (string search = null) {
+    public async Task<IActionResult> GetCustomers (string? search = null) {
 
         IEnumerable<Customer> customers = null;
         if (string.IsNullOrEmpty (search)) {

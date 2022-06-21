@@ -10,7 +10,7 @@ namespace TFG.Infrastructure;
 public static class ApplicationInfrastructureServices {
     public static IServiceCollection AddApplicationInfrastructureServices (this IServiceCollection services,
         IConfiguration configuration) {
-        services.AddScoped<IDataContext<Customer>, CustomerDataContext> (options => {
+        services.AddScoped<CustomerDataContext> (options => {
 
             return new CustomerDataContext (configuration["DatabaseSettings:ConnectionString"],
                 configuration["DatabaseSettings:DatabaseName"], configuration["DatabaseSettings:CollectionName"]);

@@ -5,7 +5,7 @@ services:
     container_name: tfgdb
     restart: always
     ports: 
-      - 27017:27017
+      - 27028:27017
     volumes:
       - tfg_mongo_data:/data/db
   

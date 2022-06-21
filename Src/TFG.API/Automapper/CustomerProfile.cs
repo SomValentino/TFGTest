@@ -5,8 +5,7 @@ using TFG.Domain.Entities;
 namespace TFG.API.Automapper;
 
 public class CustomerProfile : Profile {
-   public CustomerProfile()
-   {
-       var config = new MapperConfiguration(cfg => cfg.CreateMap<CustomerDto, Customer> ());
-   }
+    public CustomerProfile () {
+        CreateMap<CustomerDto, Customer> ();
+    }
 }
