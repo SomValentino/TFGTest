@@ -50,11 +50,11 @@ public class AccountController : ControllerBase {
 
         var customerUserNameExist = await _customerService.GetCustomerByUsernameAsync (customerDto.UserName);
 
-        if (customerUserNameExist != null) return BadRequest(new ErrorDto { Errors = "Invalid username or password" }); ;
+        if (customerUserNameExist != null) return BadRequest(new ErrorDto { Errors = "Username already exist" }); ;
 
         var customerEmailExist = await _customerService.GetCustomerByEmailAsync (customerDto.Email);
 
-        if (customerEmailExist != null) return BadRequest(new ErrorDto { Errors = "Invalid username or password" }); ;
+        if (customerEmailExist != null) return BadRequest(new ErrorDto { Errors = "Email already exist" }); ;
 
         var role = await _roleService.GetRoleByName (customerDto.RoleName);
 

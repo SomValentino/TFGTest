@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System;
 namespace TFG.Unit.Tests.Setup;
 
-public class TestCustomer {
+public static class TestCustomer {
     public static IEnumerable<Customer> GetCustomers () {
         return new [] {
                new Customer{

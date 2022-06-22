@@ -25,9 +25,16 @@ public class TestMocks {
 
     }
 
-    public static void SetupGetCustomerByIdServiceMock (Mock<ICustomerService> mock, string id) {
+    public static void SetupGetCustomerByIdServiceMock (Mock<ICustomerService> mock, Customer customer) {
 
-        mock.Setup (x => x.GetAsync (id)).ReturnsAsync (TestCustomer.GetCustomers ().Where (x => x.Id == id).FirstOrDefault ());
+        mock.Setup (x => x.GetAsync (customer.Id)).ReturnsAsync (customer);
+
+    }
+
+    public static void SetupGetCustomersServiceMock(Mock<ICustomerService> mock)
+    {
+
+        mock.Setup(x => x.GetAsync()).ReturnsAsync(TestCustomer.GetCustomers());
 
     }
 
@@ -99,6 +106,23 @@ public class TestMocks {
         };
 
         mock.Setup (x => x.Map<Customer, CustomerResponseDto> (customer)).Returns (customerResponseDto);
+    }
+
+    public static void SetResponseDtoCustomerMappingMock(Mock<IMapper> mock, IEnumerable<Customer> customer)
+    {
+        var customerResponseDto = customer.Select(x => new CustomerResponseDto
+        {
+            Id = x.Id,
+            UserName = x.UserName,
+            FirstName = x.FirstName,
+            Role = x.Role,
+            LastName = x.LastName,
+            Email = x.Email,
+            PhoneNumber = x.PhoneNumber,
+            CreatedAt = x.CreatedAt
+        });
+
+        mock.Setup(x => x.Map<IEnumerable<CustomerResponseDto>>(customer)).Returns(customerResponseDto);
     }
 
     public static IConfiguration SetupIConfiguration () {

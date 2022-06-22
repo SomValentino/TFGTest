@@ -174,7 +174,7 @@ public class AccountControllerTests
         {
             FirstName = "test",
             LastName = "test",
-            UserName = "test.test",
+            UserName = "aiyanda",
             Email = "test@test.com",
             RoleName = "Administrator",
             Password = "password123",
@@ -194,16 +194,16 @@ public class AccountControllerTests
 
         var result = await accountController.RegisterCustomer(customerDto);
 
-        var createdResult = result as CreatedAtActionResult;
+        var createdResult = result as BadRequestObjectResult;
 
-        var response = createdResult.Value as CustomerResponseDto;
+        var response = createdResult.Value as ErrorDto;
 
-        var statusCode = 201;
+        var statusCode = 400;
 
-        var role = "Administrator";
+        var messageExpected = "Username already exist";
 
         Assert.Equal(createdResult.StatusCode, statusCode);
-        Assert.Equal(response.Id, customer.Id);
-        Assert.Equal(response.Role.Name, role);
+        Assert.NotNull(response);
+        Assert.Equal(response.Errors, messageExpected);
     }
 }
