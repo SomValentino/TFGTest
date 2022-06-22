@@ -35,13 +35,13 @@ public class AccountController : ControllerBase {
     public async Task<IActionResult> Login ([FromBody] LoginDto loginDto) {
         var customer = await _customerService.GetCustomerByUsernameAsync (loginDto.Username);
 
-        if (customer == null) return BadRequest ("Invalid username or password");
+        if (customer == null) return BadRequest(new ErrorDto { Errors = "Invalid username or password" }); ;
 
         var result = await _loginService.SignIn (customer, loginDto.Password);
 
-        if (!result.Success) return BadRequest ("Invalid username or password");
+        if (!result.Success) return BadRequest (new ErrorDto { Errors = "Invalid username or password" });
 
-        return Ok (new { Token = result.Token, scheme = "Bearer", expiry = _configuration.GetValue<double> ("jwtExpiry") });
+        return Ok (new TokenDto { Token = result.Token, Scheme = "Bearer", Expiry = _configuration.GetValue<double> ("jwtExpiry") });
     }
 
     [HttpPost ("register")]
@@ -50,11 +50,11 @@ public class AccountController : ControllerBase {
 
         var customerUserNameExist = await _customerService.GetCustomerByUsernameAsync (customerDto.UserName);
 
-        if (customerUserNameExist != null) return BadRequest ("Customer with username alreday exist");
+        if (customerUserNameExist != null) return BadRequest(new ErrorDto { Errors = "Invalid username or password" }); ;
 
         var customerEmailExist = await _customerService.GetCustomerByEmailAsync (customerDto.Email);
 
-        if (customerEmailExist != null) return BadRequest ("Customer with email alreday exist");
+        if (customerEmailExist != null) return BadRequest(new ErrorDto { Errors = "Invalid username or password" }); ;
 
         var role = await _roleService.GetRoleByName (customerDto.RoleName);
 
@@ -66,7 +66,9 @@ public class AccountController : ControllerBase {
         customer = await _customerService.Create (customer);
         var actionName = nameof (CustomerController.GetCustomer);
 
-        return CreatedAtAction (actionName, "Customer", new { id = customer.Id }, new { id = customer.Id });
+        var response = _mapper.Map<Customer, CustomerResponseDto>(customer);
+
+        return CreatedAtAction (actionName, "Customer", new { id = customer.Id }, response);
     }
 
 }

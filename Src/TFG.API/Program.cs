@@ -7,6 +7,7 @@ using TFG.Application;
 using TFG.Application.Contracts.Service;
 using TFG.API.Migrations;
 using TFG.Infrastructure;
+using TFG.API.Dto.Response;
 
 var builder = WebApplication.CreateBuilder (args);
 
@@ -64,7 +65,7 @@ app.UseExceptionHandler (builder => {
 
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
         await context.Response.WriteAsync (JsonConvert
-            .SerializeObject (new { errors = exception.Error.Message }));
+            .SerializeObject (new ErrorDto { Errors = exception.Error.Message }));
 
     });
 });

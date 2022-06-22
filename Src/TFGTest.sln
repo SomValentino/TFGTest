@@ -1,23 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFG.Domain", "TFG.Domain\TFG.Domain.csproj", "{D8BA487E-1516-46E5-B8D0-8877A4B0EEEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFG.Domain", "TFG.Domain\TFG.Domain.csproj", "{D8BA487E-1516-46E5-B8D0-8877A4B0EEEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFG.Application", "TFG.Application\TFG.Application.csproj", "{66E6F1ED-BD1E-40E9-9605-3A885EB58C97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFG.Application", "TFG.Application\TFG.Application.csproj", "{66E6F1ED-BD1E-40E9-9605-3A885EB58C97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFG.Infrastructure", "TFG.Infrastructure\TFG.Infrastructure.csproj", "{228C430E-B953-455E-B0D9-CC8A76F8715A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFG.Infrastructure", "TFG.Infrastructure\TFG.Infrastructure.csproj", "{228C430E-B953-455E-B0D9-CC8A76F8715A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TFG.API", "TFG.API\TFG.API.csproj", "{037D1B12-E5CF-4E49-A3B1-4146C61DE420}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFG.API", "TFG.API\TFG.API.csproj", "{037D1B12-E5CF-4E49-A3B1-4146C61DE420}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TFG.Unit.Tests", "Tests\TFG.Unit.Tests\TFG.Unit.Tests.csproj", "{4082B7AF-F2E4-42A0-9FFD-E70BE3803DA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D8BA487E-1516-46E5-B8D0-8877A4B0EEEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,5 +35,15 @@ Global
 		{037D1B12-E5CF-4E49-A3B1-4146C61DE420}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{037D1B12-E5CF-4E49-A3B1-4146C61DE420}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{037D1B12-E5CF-4E49-A3B1-4146C61DE420}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4082B7AF-F2E4-42A0-9FFD-E70BE3803DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4082B7AF-F2E4-42A0-9FFD-E70BE3803DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4082B7AF-F2E4-42A0-9FFD-E70BE3803DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4082B7AF-F2E4-42A0-9FFD-E70BE3803DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B46BFD08-F50B-44B9-8A6B-86B713BD4777}
 	EndGlobalSection
 EndGlobal

@@ -59,24 +59,31 @@ public class TestMocks {
         var customer = new Customer {
             Id = "62b212b7aa7678cee7faad0d",
             UserName = customerDto.UserName,
+            Role = customerDto.RoleName == "Administrator" ? new Role
+            {
+                Id = "62b211baaa7678cee7faad0c",
+                Name = "Administrator",
+                CreatedAt = DateTime.Now
+            }:
+            new Role
+            {
+                Id = "62b211baaa7678cee7faad0c",
+                Name = "User",
+                CreatedAt = DateTime.Now
+            },
             Password = customerDto.Password,
             FirstName = customerDto.FirstName,
-            Role = customerDto.RoleName == "Administrator" ? new Role {
-            Id = "62b211baaa7678cee7faad0c",
-            Name = "Administrator",
-            CreatedAt = DateTime.Now
-            } : new Role {
-            Id = "62b211baaa7678cee7faad0c",
-            Name = "User",
-            CreatedAt = DateTime.Now
-            },
             LastName = customerDto.LastName,
             Email = customerDto.Email,
             PhoneNumber = customerDto.PhoneNumber,
             CreatedAt = DateTime.Now
         };
 
-        mock.Setup (x => x.Map<CustomerDto, Customer> (customerDto)).Returns (customer);
+        mock.Setup (x => x.Map<Customer> (customerDto)).Returns (customer);
+    }
+    public static void SetGetRoleServiceMock(Mock<IRoleService> mock, string rolename)
+    {
+        mock.Setup(x => x.GetRoleByName(rolename)).ReturnsAsync(TestRole.GetRoles().Where(x => x.Name == rolename).FirstOrDefault());
     }
 
     public static void SetResponseDtoCustomerMappingMock (Mock<IMapper> mock, Customer customer) {
